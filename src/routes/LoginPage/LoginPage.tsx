@@ -45,14 +45,18 @@ export default function LoginPage() {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    dispatch(login(values.email, values.password))
-      .then(() => {
-        navigate("/friends/1");
-        //update page
-      })
-      .catch((e: any) => {
-        alert(e);
-      });
+    if (e.target.checkValidity()) {
+      dispatch(login(values.email, values.password))
+        .then(() => {
+          navigate("/friends/1");
+          //update page
+        })
+        .catch((e: any) => {
+          alert("Something is wrong");
+        });
+    } else {
+      alert("Form is not valid");
+    }
   };
 
   const onChange = (e: any) => {

@@ -1,16 +1,10 @@
 import React from "react";
-import { classNames } from "../../functions/functions";
 import { BrowserRouter } from "react-router-dom";
 import App from "../../../App";
 import { Provider } from "react-redux";
 import { setupStore } from "../../../redux/store";
 
-interface IContentContainerProps {
-  children: React.ReactNode;
-  className: string;
-}
-
-export default function AppWraper() {
+export default function AppWrapper() {
   const store = setupStore();
   return (
     <Provider store={store}>
@@ -20,7 +14,3 @@ export default function AppWraper() {
     </Provider>
   );
 }
-
-AppWraper.defaultProps = {
-  className: "",
-};

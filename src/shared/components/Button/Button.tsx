@@ -3,9 +3,8 @@ import React from "react";
 import "./Button.css";
 import { classNames } from "../../functions/functions";
 
-interface IButtonProps {
+export interface IButtonProps {
   label: string;
-  color: "primary" | "secondary" | "success" | "danger" | "warning";
   outline: boolean;
   className: string;
   onClick?: () => void;

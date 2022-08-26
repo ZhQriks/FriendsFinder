@@ -7,7 +7,7 @@ class AuthService {
     return axios
       .post(APP_BACKEND_URL + "login", { email, password })
       .then((response: any) => {
-        UserService.getCurrentUserId()
+        UserService.getAllUsers()
           .then((response: any) => {
             userId = response.data.data.find(
               (user: any) => user.email === "eve.holt@reqres.in"

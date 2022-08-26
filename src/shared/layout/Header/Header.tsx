@@ -24,7 +24,7 @@ interface INavLink {
 const navLinks: INavLink[] = [
   {
     title: "Home",
-    path: ROUTE_ROOT,
+    path: generatePath(ROUTE_ROOT, { page: "1" }),
   },
   {
     title: "Profile",
@@ -77,6 +77,8 @@ export default function Header() {
         <Link
           to={generatePath(ROUTE_ROOT, { page: "1" })}
           className="w-[60%] text-3xl font-bold"
+          data-testid="logo"
+          role="logo"
         >
           Friends Finder
         </Link>
@@ -125,10 +127,25 @@ export default function Header() {
           </Link>
 
           <ul className="uppercase p-4">
+            {isAuthorizedUser ? (
+              <div>
+                <img
+                  src={user.avatar}
+                  alt="profile"
+                  className="rounded-full w-24 h-24 ml-5 mb-4"
+                />
+              </div>
+            ) : null}
             {navLinks.map((link: INavLink) => {
               if (
                 !isAuthorizedUser &&
                 (link.title === "Home" || link.title === "Profile")
+              ) {
+                return null;
+              }
+              if (
+                isAuthorizedUser &&
+                (link.title === "Login" || link.title === "Register")
               ) {
                 return null;
               } else {
@@ -152,19 +169,11 @@ export default function Header() {
               }
             })}
             {isAuthorizedUser ? (
-              <div>
-                <li className="p-4 border-b border-b-gray-200">
-                  <a onClick={handleLogout} className="hover:cursor-pointer">
-                    Logout
-                  </a>
-                </li>
-
-                <img
-                  src={user.avatar}
-                  alt="profile"
-                  className="rounded-full w-12 h-12 m-4"
-                />
-              </div>
+              <li className="p-4 border-b border-b-gray-200">
+                <a onClick={handleLogout} className="hover:cursor-pointer">
+                  Logout
+                </a>
+              </li>
             ) : null}
           </ul>
         </div>

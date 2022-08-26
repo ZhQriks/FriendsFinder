@@ -15,11 +15,11 @@ export default function ProfilePage() {
     first_name: "",
     last_name: "",
     email: "",
+    data: "",
   });
   const [users, setUsers] = useState<IUserInterface[]>([]);
   useEffect(() => {
     setUsers(JSON.parse(localStorage.getItem("friends")!));
-    console.log(JSON.parse(localStorage.getItem("friends")!));
     UserService.getUser(userId)
       .then((response: any) => {
         setUser(response.data.data);

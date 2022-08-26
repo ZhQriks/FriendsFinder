@@ -1,3 +1,3 @@
-import ContentContainer from "./ContentContainer";
+import AppWrapper from "./AppWrapper";
 
-export default ContentContainer;
+export default AppWrapper;

@@ -25,10 +25,8 @@ export default function IndexPage() {
     if (!usersIsLoading) {
       setUsers(usersData?.data);
     }
-    //wait till usersIsLoading is false
   }, [usersIsLoading]);
 
-  //on page load, get the users from the store
   useEffect(() => {});
   const increasePage = () => {
     if (page! < usersData?.total_pages) {
