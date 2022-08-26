@@ -9,9 +9,11 @@ function App() {
     () => {
       const getRoute = (route: IRouteProps) => (
         <Route
+          // set the key to the path so that router can keep track of the route
           key={route.path}
           path={route.path}
           element={
+            //block the user from accessing the route if they are not logged in
             route.isAuthRoute ? (
               <AuthRoute>{route.element}</AuthRoute>
             ) : (
@@ -19,6 +21,7 @@ function App() {
             )
           }
         >
+          {/* display the children of the route if there are any*/}
           {route.items?.map((routeItem) => getRoute(routeItem))}
         </Route>
       );

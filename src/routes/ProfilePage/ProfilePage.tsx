@@ -1,15 +1,18 @@
 import * as React from "react";
 
-import "./ProfilePage.css";
 import ContentContainer from "../../shared/layout/ContentContainer";
 import { useEffect, useState } from "react";
 import UserService from "../../services/user.service";
 import { useSelector } from "../../hooks/useSelector";
 import { IUserInterface } from "../../type/users";
 
+import "./ProfilePage.css";
+
 export default function ProfilePage() {
+  //Getting current user from localStorage
   let userId = useSelector((state) => state.auth.user);
   const [user, setUser] = useState<IUserInterface>({
+    // Current user data
     id: 0,
     avatar: "",
     first_name: "",
@@ -17,8 +20,11 @@ export default function ProfilePage() {
     email: "",
     data: "",
   });
+
   const [users, setUsers] = useState<IUserInterface[]>([]);
+
   useEffect(() => {
+    // Load users and friends from localStorage
     setUsers(JSON.parse(localStorage.getItem("friends")!));
     UserService.getUser(userId)
       .then((response: any) => {
@@ -28,6 +34,7 @@ export default function ProfilePage() {
         console.log(error);
       });
   }, []);
+
   return (
     <div className="ProfilePage">
       <ContentContainer className="px-1 md:p-0">

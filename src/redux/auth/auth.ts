@@ -5,11 +5,13 @@ import {
   LOGIN_FAIL,
   LOGOUT,
 } from "./actionTypes";
+
 // @ts-ignore
 const user = JSON.parse(localStorage.getItem("user"));
 const initialState = user
   ? { isLoggedIn: true, user }
   : { isLoggedIn: false, user: null };
+
 export default function (state = initialState, action: any) {
   const { type, payload } = action;
   switch (type) {

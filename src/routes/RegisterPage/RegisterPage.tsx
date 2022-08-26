@@ -21,21 +21,28 @@ export default function RegisterPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [values, setValues] = useState<IRegisterForm>({
+    //values for the form
     email: "",
     password: "",
     passwordConfirm: "",
   });
 
   const handleSubmit = (e: any) => {
+    //Form submit function
     e.preventDefault();
-    console.log(values.email, values.password);
-    if (values.passwordConfirm === values.password) {
+    if (
+      values.passwordConfirm === values.password &&
+      e.target.checkValidity()
+    ) {
+      //Check if password and password confirm match and form is valid
       dispatch(register(values.email, values.password))
         .then(() => {
           navigate("/friends/1");
+          //update page to load friends
+          window.location.reload();
         })
         .catch((e: any) => {
-          console.log(e);
+          alert("Something is wrong" + e);
         });
     } else {
       alert("Passwords do not match");
@@ -43,6 +50,7 @@ export default function RegisterPage() {
   };
 
   const onChange = (e: any) => {
+    // handle change in form
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 

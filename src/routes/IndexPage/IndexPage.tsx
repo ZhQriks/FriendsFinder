@@ -22,6 +22,7 @@ export default function IndexPage() {
     error,
   } = useGetUsersQuery({ page });
   useEffect(() => {
+    // Load users
     if (!usersIsLoading) {
       setUsers(usersData?.data);
     }
@@ -29,6 +30,7 @@ export default function IndexPage() {
 
   useEffect(() => {});
   const increasePage = () => {
+    // Increase page for next request
     if (page! < usersData?.total_pages) {
       let nextPage = Number(page) + 1;
       navigate(`/friends/${nextPage++}`);
@@ -36,6 +38,7 @@ export default function IndexPage() {
     }
   };
   const decreasePage = () => {
+    // Decrease page for next request
     if (Number(page!) > 1) {
       let prevPage = Number(page) - 1;
       navigate(`/friends/${prevPage++}`);
@@ -43,6 +46,7 @@ export default function IndexPage() {
     }
   };
   const addFriend = (id: number, first_name: string, avatar: string) => {
+    //Adding friend to the friend-list (localStorage)
     const newFriend = {
       id: id,
       first_name: first_name,
@@ -51,17 +55,18 @@ export default function IndexPage() {
     if (id === userId) {
       return alert("It's you!");
     }
-    const friends = JSON.parse(localStorage.getItem("friends")!);
+    const friends = JSON.parse(localStorage.getItem("friends")!); //Get friends from localStorage
     if (friends) {
       for (let i = 0; i < friends.length; i++) {
+        //Check if the friend is already in the friend-list
         if (friends[i].id === id) {
           return alert("You are already friends with this user");
         }
       }
-      console.log(friends);
       const newFriendsList = [...friends, newFriend];
       localStorage.setItem("friends", JSON.stringify(newFriendsList));
     } else {
+      //If there is no friends in the localStorage, create new array and add the new friend
       localStorage.setItem("friends", JSON.stringify([newFriend]));
     }
     alert("Friend added");

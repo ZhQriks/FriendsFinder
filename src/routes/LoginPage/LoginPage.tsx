@@ -25,15 +25,18 @@ export default function LoginPage() {
   });
 
   const handleSubmit = (e: any) => {
+    //Form submit function
     e.preventDefault();
     if (e.target.checkValidity()) {
+      //check if form is valid
       dispatch(login(values.email, values.password))
         .then(() => {
           navigate("/friends/1");
-          //update page
+          //update page to load friends
+          window.location.reload();
         })
         .catch((e: any) => {
-          alert("Something is wrong");
+          alert("Something is wrong" + e);
         });
     } else {
       alert("Form is not valid");

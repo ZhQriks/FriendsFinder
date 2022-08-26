@@ -13,6 +13,7 @@ export const setMessage = (message: any) => ({
   type: SET_MESSAGE,
   payload: message,
 });
+
 export const clearMessage = () => ({
   type: CLEAR_MESSAGE,
 });
@@ -46,6 +47,7 @@ export const register =
       }
     );
   };
+
 export const login = (email: string, password: string) => (dispatch: any) => {
   return AuthService.login(email, password).then(
     (response: any) => {
@@ -75,6 +77,7 @@ export const login = (email: string, password: string) => (dispatch: any) => {
     }
   );
 };
+
 export const logout = () => (dispatch: any) => {
   AuthService.logout();
   dispatch({

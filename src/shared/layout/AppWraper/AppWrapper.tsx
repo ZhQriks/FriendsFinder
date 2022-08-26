@@ -8,7 +8,11 @@ export default function AppWrapper() {
   const store = setupStore();
   return (
     <Provider store={store}>
+      {" "}
+      {/* Setup provider to be able to use redux in all components */}
       <BrowserRouter>
+        {" "}
+        {/*Connecting react-router-dom-v6*/}
         <App />
       </BrowserRouter>
     </Provider>

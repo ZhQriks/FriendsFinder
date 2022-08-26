@@ -1,4 +1,4 @@
-export const APP_BACKEND_URL = "https://reqres.in/api/";
+export const APP_BACKEND_URL = process.env.REACT_APP_BACKEND_API;
 // Url for the backend server.
 
 export const inputs = [

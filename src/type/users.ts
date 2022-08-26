@@ -1,4 +1,5 @@
 export interface IUserInterface {
+  // interface for user from reqres.in
   data: any;
   avatar: string;
   email: string;
