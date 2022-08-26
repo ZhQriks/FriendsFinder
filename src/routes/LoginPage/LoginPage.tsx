@@ -9,6 +9,8 @@ import { useDispatch } from "../../hooks/useDispatch";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../redux/auth/actions";
 
+import { inputs } from "../../constants/constants";
+
 interface ILoginForm {
   email: string;
   password: string;
@@ -21,27 +23,6 @@ export default function LoginPage() {
     email: "",
     password: "",
   });
-
-  const inputs = [
-    {
-      name: "email",
-      type: "email",
-      placeholder: "Email",
-      errorMessage: "It should be a valid email address!",
-      label: "Email",
-      required: true,
-    },
-    {
-      name: "password",
-      type: "password",
-      placeholder: "Password",
-      errorMessage:
-        "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
-      label: "Password",
-      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
-      required: true,
-    },
-  ];
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -70,7 +51,10 @@ export default function LoginPage() {
           className="md:max-w-[500px] mx-auto max-w-[280px] mb-20"
           onSubmit={handleSubmit}
         >
-          <h1 className="text-3xl font-bold mb-6">Login</h1>
+          <h2 className="text-xl font-medium mb-4">
+            Try <strong>eve.holt@reqres.in</strong> and <strong>pistol</strong>
+          </h2>
+          <h1 className="text-3xl md:text-5xl font-bold mb-6">Login</h1>
           <p>Email</p>
           <Input
             className="mb-4"
