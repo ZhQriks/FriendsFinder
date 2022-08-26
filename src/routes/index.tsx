@@ -19,6 +19,11 @@ export const ROUTE_REGISTER = "register";
 export const ROUTE_PROFILE = "profile";
 export const publicRoutes: IRouteProps[] = [
   {
+    path: "/",
+    element: <LoginPage />,
+    isAuthRoute: true,
+  },
+  {
     path: ROUTE_ROOT,
     element: <IndexPage />,
     isAuthRoute: true,
