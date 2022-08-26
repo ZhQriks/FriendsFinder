@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useMemo } from "react";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import { IRouteProps, publicRoutes as routes } from "./routes";
+import Layout from "./shared/layout/Layout";
+import AuthRoute from "./shared/AuthRoute";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+  const getAllRoutes = useMemo(
+    () => {
+      const getRoute = (route: IRouteProps) => (
+        <Route
+          key={route.path}
+          path={route.path}
+          element={
+            route.isAuthRoute ? (
+              <AuthRoute>{route.element}</AuthRoute>
+            ) : (
+              route.element
+            )
+          }
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          {route.items?.map((routeItem) => getRoute(routeItem))}
+        </Route>
+      );
+
+      return <Routes>{routes.map((route) => getRoute(route))}</Routes>;
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [routes]
   );
+
+  return <Layout>{getAllRoutes}</Layout>;
 }
 
 export default App;
