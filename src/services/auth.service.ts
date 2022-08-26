@@ -3,6 +3,7 @@ import { APP_BACKEND_URL } from "../constants/constants";
 import UserService from "./user.service";
 class AuthService {
   login(email: string, password: string) {
+    //Login user and get token from API
     let userId: number;
     return axios
       .post(APP_BACKEND_URL + "login", { email, password })
@@ -24,9 +25,11 @@ class AuthService {
       });
   }
   logout() {
+    //Logout user and remove token from local storage
     localStorage.removeItem("user");
   }
   register(email: string, password: string) {
+    //Register user and get token from API
     return axios
       .post(APP_BACKEND_URL + "register", {
         email,
