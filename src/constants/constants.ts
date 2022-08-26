@@ -1,4 +1,5 @@
 export const APP_BACKEND_URL = "https://reqres.in/api/";
+// Url for the backend server.
 
 export const inputs = [
   {

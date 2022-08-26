@@ -1,7 +1,9 @@
 export default function authHeader() {
-  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  // That's used to get the token from the local storage, but it's not used in the project.
+
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
   if (user && user.accessToken) {
-    return { Authorization: 'Bearer ' + user.accessToken };
+    return { Authorization: "Bearer " + user.accessToken };
   } else {
     return {};
   }

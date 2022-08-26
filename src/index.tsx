@@ -1,7 +1,6 @@
 import React from "react";
 import AppWrapper from "./shared/layout/AppWraper";
 import { createRoot } from "react-dom/client";
-import { setupStore } from "./redux/store";
 
 import "./index.css";
 
