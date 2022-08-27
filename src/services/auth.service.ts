@@ -27,6 +27,7 @@ class AuthService {
   logout() {
     //Logout user and remove token from local storage
     localStorage.removeItem("user");
+    localStorage.removeItem("friends");
   }
   register(email: string, password: string) {
     //Register user and get token from API
