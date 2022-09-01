@@ -33,7 +33,7 @@ export default function ProfilePage() {
       .catch((error: any) => {
         console.log(error);
       });
-  }, []);
+  }, [userId]);
 
   return (
     <div className="ProfilePage">

@@ -55,10 +55,8 @@ export default function Header() {
   useEffect(() => {
     if (isAuthorizedUser) {
       //wait till userId is loaded
-      console.log(userId);
       UserService.getUser(userId)
         .then((response: any) => {
-          console.log(response.data.data.avatar);
           setUser(response.data.data);
         })
         .catch((error: any) => {
