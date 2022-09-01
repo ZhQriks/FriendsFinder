@@ -33,7 +33,6 @@ export default function LoginPage() {
         .then(() => {
           navigate("/friends/1");
           //update page to load friends
-          window.location.reload();
         })
         .catch((e: any) => {
           alert("Something is wrong" + e);
