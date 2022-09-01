@@ -26,7 +26,6 @@ export const register =
           type: REGISTER_SUCCESS,
           payload: { user: response },
         });
-        console.log(response);
         return Promise.resolve();
       },
       (error: any) => {

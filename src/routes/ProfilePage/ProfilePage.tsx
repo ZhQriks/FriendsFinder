@@ -10,7 +10,7 @@ import "./ProfilePage.css";
 
 export default function ProfilePage() {
   //Getting current user from localStorage
-  let userId = useSelector((state) => state.auth.user);
+  let userId = JSON.parse(localStorage.getItem("user")!);
   const [user, setUser] = useState<IUserInterface>({
     // Current user data
     id: 0,
@@ -26,13 +26,15 @@ export default function ProfilePage() {
   useEffect(() => {
     // Load users and friends from localStorage
     setUsers(JSON.parse(localStorage.getItem("friends")!));
-    UserService.getUser(userId)
-      .then((response: any) => {
-        setUser(response.data.data);
-      })
-      .catch((error: any) => {
-        console.log(error);
-      });
+    if (userId) {
+      UserService.getUser(userId)
+        .then((response: any) => {
+          setUser(response.data.data);
+        })
+        .catch((error: any) => {
+          console.log(error);
+        });
+    }
   }, [userId]);
 
   return (

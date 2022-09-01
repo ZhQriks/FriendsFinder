@@ -18,7 +18,6 @@ class AuthService {
             console.log(error);
           })
           .then(() => {
-            console.log("it will be setted in ls");
             localStorage.setItem("user", JSON.stringify(userId));
             return response.data;
           });
@@ -37,7 +36,6 @@ class AuthService {
         password,
       })
       .then((response: any) => {
-        console.log(response.data);
         if (response.data.token) {
           localStorage.setItem("user", JSON.stringify(response.data.id));
         }

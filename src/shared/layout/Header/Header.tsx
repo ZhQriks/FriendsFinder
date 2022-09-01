@@ -43,7 +43,7 @@ const navLinks: INavLink[] = [
 export default function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  let userId = useSelector((state) => state.auth.user);
+  let userId = JSON.parse(localStorage.getItem("user")!);
   const [user, setUser] = useState<any>({
     first_name: "",
     avatar: "",
